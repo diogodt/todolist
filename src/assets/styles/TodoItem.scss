@@ -1,0 +1,98 @@
+.todo-item {
+    display: flex;
+    align-items: flex-start;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.todo-checkbox {
+    position: relative;
+    margin: 10px;
+}
+
+.todo-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.todo-checkbox .checkmark {
+    position: relative;
+    height: 24px;
+    display: block;
+    width: 24px;
+    background-color: #dbdbdb; 
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.todo-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: #4CAF50;
+}
+
+.todo-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.todo-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: #4CAF50; 
+    border-color: #4CAF50;
+}
+
+.todo-checkbox input[type="checkbox"]:checked + .checkmark:after {
+    display: block;
+}
+
+.todo-checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.todo-checkbox input[type="checkbox"]:not(:checked) + .checkmark:hover {
+    background-color: #b1b1b1
+}
+
+.todo-checkbox input[type="checkbox"]:checked + .checkmark:hover {
+    background-color: #66bb6a;
+}
+
+.todo-content {
+    width: calc(100% - 28px);
+}
+
+.todo-content h4 {
+    margin: 10px 20px 10px 10px;
+    color: #333;
+}
+
+.todo-content p {
+    margin: 10px 20px 10px 10px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #666;
+}
+
+.remove-btn {
+    position: relative;
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    background: url('../../assets/images/close_button.svg') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.remove-btn:hover {
+    opacity: 0.8;
+}
