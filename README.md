@@ -1,4 +1,4 @@
-# Todo List Micro Frontend Application
+# Todo List Application
 
 # Project Overview
 Esse projeto é uma todo list, com autenticação de usuário.
