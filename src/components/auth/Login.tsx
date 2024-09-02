@@ -40,7 +40,7 @@ const Login: React.FC<LoginProps> = ({ onShowRegister }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className='login-btn' onClick={handleLogin}>Login</button>
+                <button className='login-btn' onClick={handleLogin}>Entrar</button>
                 <p className='register'>Não tem um cadastro? <button className='register-btn' onClick={onShowRegister}>Registre-se</button></p>
             </div>
         </div>
