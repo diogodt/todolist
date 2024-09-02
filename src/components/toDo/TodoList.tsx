@@ -3,9 +3,11 @@ import { debounce } from 'lodash';
 import TodoItem from './TodoItem';
 import { Todo } from '../../types/todo';
 import { loadTodos, saveTodos } from '../../utils/localStorageUtils';
+import { useAuth } from '../auth/AuthProvider';
 import '../../assets/styles/TodoList.scss';
 
 const TodoList: React.FC = () => {
+    const { user } = useAuth();
     const [todos, setTodos] = useState<Todo[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -14,19 +16,23 @@ const TodoList: React.FC = () => {
     const [localStorageAvailable, setLocalStorageAvailable] = useState<boolean>(true);
 
     useEffect(() => {
-        try {
-            const loadedTodos = loadTodos();
-            setTodos(loadedTodos);
-        } catch (error) {
-            setLocalStorageAvailable(false);
+        if (user) {
+            try {
+                const loadedTodos = loadTodos(user);
+                setTodos(loadedTodos);
+            } catch (error) {
+                setLocalStorageAvailable(false);
+            }
         }
-    }, []);
+    }, [user]);
 
     const debouncedSaveTodos = debounce((todos: Todo[]) => {
-        try {
-            saveTodos(todos);
-        } catch (error) {
-            setLocalStorageAvailable(false);
+        if (user) {
+            try {
+                saveTodos(user, todos);
+            } catch (error) {
+                setLocalStorageAvailable(false);
+            }
         }
     }, 500);
 
@@ -44,7 +50,9 @@ const TodoList: React.FC = () => {
             };
             const newTodos = [...todos, newTodo];
             setTodos(newTodos);
-            saveTodos(newTodos);
+            if (user) {
+                saveTodos(user, newTodos);
+            }
             setInputValue('');
             setDescription('');
         }
@@ -53,13 +61,27 @@ const TodoList: React.FC = () => {
     const toggleTodo = (id: number): void => {
         const newTodos = todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo);
         setTodos(newTodos);
-        saveTodos(newTodos);
+        if (user) {
+            saveTodos(user, newTodos);
+        }
     };
 
     const removeTodo = (id: number): void => {
         const newTodos = todos.filter(todo => todo.id !== id);
         setTodos(newTodos);
-        saveTodos(newTodos);
+        if (user) {
+            saveTodos(user, newTodos);
+        }
+    };
+
+    const saveEditTodo = (id: number, newText: string, newDescription: string): void => {
+        const newTodos = todos.map(todo =>
+            todo.id === id ? { ...todo, text: newText, description: newDescription, completed: false } : todo
+        );
+        setTodos(newTodos);
+        if (user) {
+            saveTodos(user, newTodos);
+        }
     };
 
     const handleDragStart = (event: React.DragEvent<HTMLElement>, id: number) => {
@@ -82,7 +104,9 @@ const TodoList: React.FC = () => {
             newItems.splice(draggedItemIndex, 1);
             newItems.splice(targetItemIndex, 0, item);
             setTodos(newItems);
-            saveTodos(newItems);
+            if (user) {
+                saveTodos(user, newItems);
+            }
         }
     };
 
@@ -143,6 +167,7 @@ const TodoList: React.FC = () => {
                             todo={todo}
                             toggleTodo={toggleTodo}
                             removeTodo={removeTodo}
+                            saveEditTodo={saveEditTodo}
                         />
                     </li>
                 ))}

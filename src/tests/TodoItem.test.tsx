@@ -7,6 +7,7 @@ import TodoItem from '../components/toDo/TodoItem';
 describe('TodoItem', () => {
   const mockToggleTodo = jest.fn();
   const mockRemoveTodo = jest.fn();
+  const mockEditTodo = jest.fn();
   const todo: Todo = {
     id: 1,
     text: 'Test Todo',
@@ -15,21 +16,21 @@ describe('TodoItem', () => {
   };
 
   test('renders the todo item', () => {
-    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} />);
+    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} saveEditTodo={mockEditTodo} />);
     
     expect(screen.getByText('Test Todo')).toBeInTheDocument();
     expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 
   test('calls toggleTodo when clicked', () => {
-    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} />);
+    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} saveEditTodo={mockEditTodo} />);
     
     fireEvent.click(screen.getByText('Test Todo'));
     expect(mockToggleTodo).toHaveBeenCalledWith(todo.id);
   });
 
   test('calls removeTodo when remove button is clicked', () => {
-    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} />);
+    render(<TodoItem todo={todo} toggleTodo={mockToggleTodo} removeTodo={mockRemoveTodo} saveEditTodo={mockEditTodo} />);
     
     const removeButton = screen.getByRole('button', { name: '' });
     fireEvent.click(removeButton);

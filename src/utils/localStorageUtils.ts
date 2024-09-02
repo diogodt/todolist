@@ -2,8 +2,8 @@ import { Todo } from '../types/todo';
 
 const LOCAL_STORAGE_KEY = 'todos';
 
-export const loadTodos = (): Todo[] => {
-    const todosJson = localStorage.getItem(LOCAL_STORAGE_KEY);
+export const loadTodos = (username: string): Todo[] => {
+    const todosJson = localStorage.getItem(`todos_${username}`);
     if (!todosJson) return [];
     try {
         const todos = JSON.parse(todosJson);
@@ -14,10 +14,10 @@ export const loadTodos = (): Todo[] => {
     }
 };
 
-export const saveTodos = (todos: Todo[]): void => {
+export const saveTodos = (username: string, todos: Todo[]): void => {
     try {
         const todosJson = JSON.stringify(todos);
-        localStorage.setItem(LOCAL_STORAGE_KEY, todosJson);
+        localStorage.setItem(`todos_${username}`, todosJson);
     } catch (error) {
         console.error("Could not save the todos to localStorage", error);
     }

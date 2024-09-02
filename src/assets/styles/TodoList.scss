@@ -1,7 +1,7 @@
 .todo-list ul {
     column-count: 4;
     column-gap: 15px;
-    padding: 0;
+    padding: 0 20px;
 }
 
 .todo-list li {
@@ -31,14 +31,15 @@ input, textarea {
     border-radius: 7px;
     border: 0;
     margin-top: 10px;
+    cursor: pointer;
 }
 
-.new-task {
-    display: flex;
+.description-button:hover {
+    background: #3c8b40;
 }
 
 .sort-filter {
-    margin: 20px;
+    margin: 70px 20px 20px;
 }
 
 .sort-cards {
@@ -48,7 +49,7 @@ input, textarea {
 }
 
 .sort-filter input {
-    width: calc(50% - 60px);
+    width: calc(50% - 23px);
 }
 
 .sort-cards button {
@@ -58,10 +59,81 @@ input, textarea {
     border-radius: 7px;
     margin: 0 3px;
     height: 40px;
+    cursor: pointer;
+}
+
+.sort-cards button:hover {
+    background: #bdbdbd;
 }
 
 h2 {
     margin: 0;
     padding: 20px;
     color: #FFF;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.user {
+    float: right;
+    margin-right: 30px;
+    margin-top: -46px;
+    color: #FFF;
+}
+
+.user b {
+    text-transform: capitalize;
+}
+
+.user button {
+    background: #b30000;
+    color: #FFF;
+    border: 0;
+    padding: 7px 12px;
+    border-radius: 7px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.user button:hover {
+    background: #bd2020;
+}
+
+@media (max-width: 1300px) and (min-width: 1000px) {
+    .todo-list ul {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 700px) {
+    .todo-list ul {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 700px) {
+    .todo-list ul {
+        column-count: 1;
+    }
+}
+
+@media (max-width: 1000px) {
+    .sort-cards {
+        display: block;
+        float: unset;
+        margin-top: 15px;
+        margin-left: -5px;
+    }
+
+    .input-group {
+        margin: 20px;
+        width: calc(100% - 25px);
+    }
+
+    .sort-filter input {
+        width: calc(100% - 25px);
+    }
 }

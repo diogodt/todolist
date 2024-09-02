@@ -1,0 +1,54 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.sign-on-up {
+    width: 400px;
+    border: 1px solid #3f3e3e;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.sign-on-up h2 {
+    color: #3f3e3e;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.sign-on-up input + label {
+    margin-top: 20px;
+}
+
+.login-btn {
+    float: right;
+    margin: 12px;
+    background:#4CAF50;
+    color: #FFF;
+    border: 0;
+    border-radius: 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #66bb6a;
+}
+
+.register {
+    margin-top: 55px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.register-btn {
+    background: transparent;
+    border: 0;
+    color: #316f34;
+    padding: 0;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+}
