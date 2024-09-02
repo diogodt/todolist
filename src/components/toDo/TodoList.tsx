@@ -121,37 +121,37 @@ const TodoList: React.FC = () => {
             {!localStorageAvailable && <div>LocalStorage isn't available</div>}
             <div className='new-task'>
                 <div className="input-group">
-                    <label>What task do you need to do?</label>
+                    <label>Qual tarefa você precisa realizar?</label>
                     <input
                         type="text"
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
-                        placeholder="Task name"
+                        placeholder="Nome da tarefa"
                     />
                 </div>
                 <div className="input-group">
-                    <label>Please describe your task</label>
+                    <label>Por favor, descreva a tarefa.</label>
                     <textarea
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                         rows={5}
-                        placeholder="Describe your task, as best as you can!"
+                        placeholder="Descreva sua tarefa, o melhor que puder!"
                     />
-                    <button className='description-button' onClick={handleAddTodo}>Add Task</button>
+                    <button className='description-button' onClick={handleAddTodo}>Adicionar Tarefa</button>
                 </div>
             </div>
             <div className='sort-filter'>
-                <label>Filter by Task's Title</label>
+                <label>Filtre as tarefas por título</label>
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
-                    placeholder="Search todos..."
+                    placeholder="Procurar tarefas..."
                 />
                 <div className='sort-cards'>
-                    <button onClick={() => setFilter('All')}>Show All</button>
-                    <button onClick={() => setFilter('Active')}>Show Active</button>
-                    <button onClick={() => setFilter('Completed')}>Show Completed</button>
+                    <button onClick={() => setFilter('All')}>Mostrar todas</button>
+                    <button onClick={() => setFilter('Active')}>Mostrar pendentes</button>
+                    <button onClick={() => setFilter('Completed')}>Mostrar completas</button>
                 </div>
             </div>
             <ul>

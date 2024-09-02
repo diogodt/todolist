@@ -47,7 +47,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleTodo, removeTodo, saveE
                             onChange={(e) => setNewDescription(e.target.value)}
                             className="edit-input"
                         />
-                        <button className="save-btn" onClick={(e) => { e.stopPropagation(); handleSave(); }}>Save Changes</button>
+                        <button className="save-btn" onClick={(e) => { e.stopPropagation(); handleSave(); }}>Salvar Alterações</button>
                     </>
                 ) : (
                     <>
